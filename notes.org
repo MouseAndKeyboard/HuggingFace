@@ -1,0 +1,37 @@
+#+TITLE: Notes
+
+* General Architecture
+Encoders,
+Decoders,
+Encoder-Decoders
+
+** Encoder
+Accepts inputs which represent text and converts it into numerical representations.
+These "numerical representations" are called:
+- Embeddings
+- Features
+
+  It uses the self-attention mechanism for this
+
+*** Input/Output
+Given an input of N tokens, it will output N feature vectors, each token corresponding to a vector.
+The dimension of the vector is determined by the architecture of the model.
+The vector incorporates the surrounding context as well as the word itself. It holds the "meaning" of the word within the context of the text.
+
+*** When to use
+Bi-directional: context from the left and the right
+Extracts meaningful information
+Sequence classification, question answering, masked language modelling
+
+** Decoder
+Accepts text inputs and uses a masked self-attention mechansim.
+It differs from the encoder as it is "uni-directional" and it operates in an auto-regressive manner
+
+*** Input/Output
+Given an input of N tokens, it will output N feature vectors, each token corresponding to a vector.
+The dimension of the vector is determined by the architecture of the model.
+Importantly, the vector's right-context is masked, so its context only depends on tokens on the left.
+
+** Encoder-Decoder
+The encoder accepts inputs to produce a high level representation of the text,
+The outputs are passed to the decoder alongside some more inputs to generate a prediction.
